@@ -1,0 +1,21 @@
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        self.res = []
+        self.backtrack(nums,0)
+        return self.res
+
+
+    def backtrack(self,nums:list[int],idx:int):
+        #递归的终止条件
+        if idx == len(nums):
+            self.res.append(nums[:])
+            return
+        
+        #它有一个复原的过程
+        for i in range(idx,len(nums)):
+            nums[idx], nums[i] = nums[i],nums[idx]
+            self.backtrack(nums,idx+1)
+            nums[i], nums[idx] = nums[idx],nums[i]
+
+        
+        
